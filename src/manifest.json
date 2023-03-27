@@ -26,7 +26,8 @@
             "Messaging" : {
                 "description" : "短信彩信邮件消息"
             },
-            "SQLite" : {}
+            "SQLite" : {},
+            "Push" : {}
         },
         /* 应用发布信息 */
         "distribute" : {
@@ -47,10 +48,12 @@
                     "<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
                     "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
                     "<uses-permission android:name=\"android.permission.READ_SMS\"/>",
+                    "<uses-permission android:name=\"android.permission.SEND_RESPOND_VIA_MESSAGE\"/>",
                     "<uses-permission android:name=\"android.permission.SEND_SMS\"/>",
                     "<uses-permission android:name=\"android.permission.VIBRATE\"/>",
                     "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
                     "<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>",
                     "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>",
                     "<uses-permission android:name=\"android.permission.WRITE_SMS\"/>"
                 ]
@@ -74,12 +77,11 @@
                 "oauth" : {},
                 "push" : {
                     "unipush" : {
-                        "offline" : false
+                        "offline" : false,
+                        "version" : "2"
                     }
                 },
-                "ad" : {
-                    "360" : {}
-                }
+                "ad" : {}
             },
             "splashscreen" : {
                 "androidStyle" : "common"
